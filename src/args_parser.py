@@ -10,6 +10,6 @@ class ArgsParser:
         parser.add_argument(
             '--out-dir', '-o', help="The directory into which you want to save the files downloaded", default='./')
         parser.add_argument(
-            'videos', help="The IDs or URLs of the video(s) you want to download (required)", nargs='+')
+            '--videos', help="The IDs or URLs of the video(s) you want to download (required)", nargs='+')
 
         return parser.parse_args(raw_args)
