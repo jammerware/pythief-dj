@@ -5,7 +5,7 @@ from args.parsed_args import ParsedArgs
 
 class UrlResolverService:
     def __init__(self):
-        self.url_regex = re.compile(r'[s\S]*?youtube\.com/watch\?v=([a-zA-Z0-9_]+)')
+        self.url_regex = re.compile(r'[s\S]*?youtube\.com/watch\?v=([a-zA-Z0-9_-]+)')
         self.id_regex = re.compile(r'[a-zA-Z0-9_]+')
 
     def _get_url(self, video_id: str) -> str:
@@ -13,11 +13,12 @@ class UrlResolverService:
         final_id = None
 
         if url_match is not None:
-            final_id = url_match.groups(1)
+            final_id = url_match.group(1)
+        else:
+            id_match = self.id_regex.search(video_id)
 
-        id_match = self.id_regex.search(video_id)
-        if id_match is not None:
-            final_id = video_id
+            if id_match is not None:
+                final_id = video_id
 
         if final_id is not None:
             return f'https://youtube.com/watch?v={final_id}'
