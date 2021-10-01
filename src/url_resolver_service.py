@@ -1,4 +1,6 @@
+from os.path import exists
 import re
+from args.parsed_args import ParsedArgs
 
 
 class UrlResolverService:
@@ -6,7 +8,7 @@ class UrlResolverService:
         self.url_regex = re.compile(r'[s\S]*?youtube\.com/watch\?v=([a-zA-Z0-9_]+)')
         self.id_regex = re.compile(r'[a-zA-Z0-9_]+')
 
-    def get_url(self, video_id):
+    def _get_url(self, video_id: str) -> str:
         url_match = self.url_regex.search(video_id)
         final_id = None
 
@@ -23,5 +25,31 @@ class UrlResolverService:
         raise ValueError(
             f'video_id ("{video_id}") was neither a valid YouTube video link nor a video id (the part that goes after "v" in the address of the video.')
 
-    def get_urls(self, video_ids):
-        return [self.get_url(id) for id in video_ids]
+    def _resolve_from_args(self, video_ids) -> list[str]:
+        return [self._get_url(id) for id in video_ids]
+
+    def _resolve_from_text_file(self, path: str):
+        if not exists(path):
+            raise ValueError(f"Text file path {path} doesn't exist.")
+
+        lines: list[str] = []
+
+        with open(path, 'r') as f:
+            lines = list(filter(lambda x: x != '', [line.strip() for line in f.readlines()]))
+
+        if len(lines) == 0:
+            raise ValueError(f"Text file at path {path} seems empty?")
+
+        return self._resolve_from_args(lines)
+
+    def resolve(self, args: ParsedArgs):
+        # read videos passed manually
+        video_urls: list[str] = []
+        if args.videos is not None:
+            video_urls += self._resolve_from_args(args.videos)
+
+        # read videos passed in the text file
+        if args.text is not None and args.text != '':
+            video_urls += self._resolve_from_text_file(args.text)
+
+        return video_urls

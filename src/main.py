@@ -1,10 +1,11 @@
 import os
 import sys
 from dotenv import load_dotenv
-from args_parser import ArgsParser
+from args.args_parser import ArgsParser
 from auth.auth_service import AuthService
-from downloader import Downloader
+from download.downloader import Downloader
 from logger import Logger
+from mp3ifier import Mp3ifier
 from url_resolver_service import UrlResolverService
 
 if __name__ == "__main__":
@@ -18,15 +19,22 @@ if __name__ == "__main__":
     argsParser = ArgsParser()
     args = argsParser.parse(sys.argv[1:])
 
-    if args.videos is None or len(args.videos) == 0:
-        exit()
+    if not args.is_valid():
+        print('Invalid args.')
+        exit(1)
 
     load_dotenv()
     logger = Logger()
     downloader = Downloader(logger)
+
+    # resolve video URLs from args passed
     resolver = UrlResolverService()
+    video_urls = resolver.resolve(args)
 
-    video_urls = resolver.get_urls(args.videos)
+    # get mp4s
+    downloaded = downloader.download(video_urls, args.out_dir)
 
-    downloader.download(video_urls)
+    # convert to the desired format
+    Mp3ifier().mp3ify(downloaded, args.out_dir_mp3)
+
     logger.log(f'All done! Downloaded {len(video_urls)} files.')

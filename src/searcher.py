@@ -15,7 +15,7 @@ class Searcher:
         client_secrets_file = os.environ['YT_CLIENT_SECRET_PATH']
 
         # Get credentials and create an API client
-        scopes = ["https://www.googleapis.com/auth/youtube.force-ssl"]
+        scopes = ["https://www.googleapis.com/auth/youtube.readonly"]
         flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
             client_secrets_file, scopes)
         credentials = flow.run_console()
