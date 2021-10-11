@@ -14,7 +14,10 @@ class ArgsParser:
         parser.add_argument(
             '--videos', help="The IDs or URLs of the video(s) you want to download (required)", nargs='*')
         parser.add_argument(
-            '--format', help="The format into which you wish to convert the audio data from the video (mp3 by default).", default='')
+            '--format', help="The format into which you wish to convert the audio data from the video (mp3 by default).", default='mp3')
+        parser.add_argument(
+            '--keep-mp4s', help="Keep the raw MP4 files downloaded from YouTube that this tool converts to MP3 for use (false by default).", default=False
+        )
 
         # I tried stupidly hard to make a typed parse happen here, but argparse is kind of being a jagoff
         # return parser.parse_args(raw_args, namespace=ParsedArgs())

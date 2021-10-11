@@ -8,6 +8,7 @@ class ParsedArgs:
 
         # i'm setting defaults for these with argparse, so I'm assuming it's there for now
         self._format = args_dict['format']
+        self._keep_raw = args_dict['keep_mp4s']
         self._out_dir = args_dict['out_dir']
 
         # this one is calculated but useful
@@ -25,6 +26,9 @@ class ParsedArgs:
     # @out_dir.setter
     # def out_dir(self, value):
     #     self._out_dir = value
+
+    @property
+    def keep_raw(self): return self._keep_raw
 
     @property
     def out_dir_mp3(self): return self._out_dir_mp3

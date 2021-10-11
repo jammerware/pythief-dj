@@ -1,6 +1,8 @@
-from pathlib import Path
+import os
 import re
+from pathlib import Path
 from pydub import AudioSegment
+from args.parsed_args import ParsedArgs
 from download.downloaded_song import DownloadedSong
 
 
@@ -9,8 +11,8 @@ class Mp3ifier:
         self._title_regex = re.compile(r'\s*([\S ]+\S)\s*\-\s*(\S[\S ]+\S)')
         self._safe_file_regex = re.compile(r'[<>:"/\\|\?\*]')
 
-    def mp3ify(self, songs: list[DownloadedSong], out_dir):
-        final_out_dir = Path(out_dir).joinpath(Path('mp3'))  # for now
+    def mp3ify(self, songs: list[DownloadedSong], args: ParsedArgs):
+        final_out_dir = Path(args.out_dir)
 
         if not final_out_dir.is_dir():
             final_out_dir.mkdir(parents=True)
@@ -37,4 +39,9 @@ class Mp3ifier:
             # make file name OS safe
             file_name = self._safe_file_regex.sub('', file_name)
 
+            # save as mp3
             audio.export(final_out_dir.joinpath(Path(file_name)), format='mp3', tags=tags)
+
+            # if directed, remove raw file
+            if not args.keep_raw:
+                os.remove(song.path)

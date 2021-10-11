@@ -35,6 +35,6 @@ if __name__ == "__main__":
     downloaded = downloader.download(video_urls, args.out_dir)
 
     # convert to the desired format
-    Mp3ifier().mp3ify(downloaded, args.out_dir_mp3)
+    Mp3ifier().mp3ify(downloaded, args)
 
-    logger.log(f'All done! Downloaded {len(video_urls)} files.')
+    logger.log(f'All done! Downloaded {len(video_urls)} files {"" if len(video_urls) == 1 else "s"}.')
