@@ -1,7 +1,7 @@
 import os
 import pathlib
 from pytube import YouTube
-from logger import Logger
+from services.logger import Logger
 from download.downloaded_song import DownloadedSong
 
 

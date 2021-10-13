@@ -5,9 +5,9 @@ from dotenv import load_dotenv
 from args.parsed_args import ParsedArgs
 from auth.auth_service import AuthService
 from download.downloader import Downloader
-from logger import Logger
-from mp3ifier import Mp3ifier
-from url_resolver_service import UrlResolverService
+from services.logger import Logger
+from services.mp3ifier import Mp3ifier
+from services.url_resolver_service import UrlResolverService
 
 # load env
 load_dotenv(os.path.join(os.getcwd(), './.secret/.env'))

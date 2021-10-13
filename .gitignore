@@ -4,9 +4,12 @@
 
 # build
 __pycache__
+build
+Pythief_DJ.egg-info
+dist
 
 # venv
 venv
 
 # output
-pythief-dj-output
+output
