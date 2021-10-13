@@ -50,7 +50,7 @@ class UrlResolverService:
             video_urls += self._resolve_from_args(args.videos)
 
         # read videos passed in the text file
-        if args.text is not None and args.text != '':
-            video_urls += self._resolve_from_text_file(args.text)
+        if args.txt is not None and args.txt != '':
+            video_urls += self._resolve_from_text_file(args.txt)
 
         return video_urls
