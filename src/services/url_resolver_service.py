@@ -1,6 +1,6 @@
 from os.path import exists
 import re
-from args.parsed_args import ParsedArgs
+from context.py_thief_context import PyThiefContext
 
 
 class UrlResolverService:
@@ -43,14 +43,14 @@ class UrlResolverService:
 
         return self._resolve_from_args(lines)
 
-    def resolve(self, args: ParsedArgs):
+    def resolve(self, ctx: PyThiefContext):
         # read videos passed manually
         video_urls: list[str] = []
-        if args.videos is not None:
-            video_urls += self._resolve_from_args(args.videos)
+        if ctx.args.videos is not None:
+            video_urls += self._resolve_from_args(ctx.args.videos)
 
         # read videos passed in the text file
-        if args.txt is not None and args.txt != '':
-            video_urls += self._resolve_from_text_file(args.txt)
+        if ctx.args.txt is not None and ctx.args.txt != '':
+            video_urls += self._resolve_from_text_file(ctx.args.txt)
 
         return video_urls

@@ -1,17 +1,20 @@
 from os import path
 
 
-class ParsedArgs:
+class PyThiefArgs:
     @classmethod
     def from_kwargs(cls, args_dict: dict[str, str]):
-        args = ParsedArgs()
+        args = PyThiefArgs()
         args._txt = None if 'text' not in args_dict else args_dict['txt']
-        args._videos = None if 'video' not in args_dict else list(args_dict['video'])
+        args._videos = [] if 'video' not in args_dict else list(args_dict['video'])
 
-        # i'm setting defaults for these with argparse, so I'm assuming it's there for now
-        args._format = args_dict['format']
-        args._keep_raw = 'keep_raw' in args_dict
+        # i'm setting defaults for these with click, so I'm assuming it's there for now
+        args._format = args_dict['format'].lower()
+        args._keep_raw = args_dict['keep_raw']
         args._out_dir = args_dict['out_dir']
+
+        # they can pass videos as unnamed arguments too
+        args._videos += list(args_dict['videos'])
 
         return args
 
@@ -23,9 +26,6 @@ class ParsedArgs:
 
     @property
     def keep_raw(self): return self._keep_raw
-
-    @property
-    def out_dir_mp3(self): return self._out_dir_mp3
 
     @property
     def txt(self): return self._txt
