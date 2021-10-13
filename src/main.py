@@ -19,12 +19,11 @@ load_dotenv(os.path.join(os.getcwd(), './.secret/.env'))
 @click.argument('videos', nargs=-1)
 @click.option('-k', '--keep-raw', default=False, type=click.BOOL, help="Keep the raw MP4 files downloaded from YouTube that this tool converts to MP3 for use (false by default).")
 @click.option('-f', '--format', default='mp3', help='The format into which you wish to convert the audio data from the video (mp3 by default).')
-@click.option('-o', '--out-dir', default='output', type=click.Path(file_okay=False, resolve_path=True), help="The directory into which you want to save the files downloaded")
+@click.option('-o', '--out-dir', default='pythief-dj-output', type=click.Path(file_okay=False, resolve_path=True), help="The directory into which you want to save the files downloaded")
 @click.option('-t', '--txt', type=click.Path(exists=True, resolve_path=True), help="Path to a text file containing the videos to download. One per line.")
-@click.option('-v', '--video', help="The IDs or URLs of the video(s) you want to download. One of --video, --txt, or --csv is required.", multiple=True)
 @click.command()
 def cli(**kwargs):
-    """Download videos specified in VIDEOS or in --txt, --video, and --csv."""
+    """Download audio for the videos specified in VIDEOS, in --txt, or both."""
     if len(sys.argv) < 2:
         _echo_command_help(cli)
         exit()

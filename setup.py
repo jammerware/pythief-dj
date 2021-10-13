@@ -9,7 +9,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name='pythief-dj',
-    version='0.2.0',
+    version='0.2.1',
     description='A CLI for "borrowing" music from YouTube. DJ use only, and also, you know the deal, DJs, right?',
     author='Ben Stein',
     author_email='ben.s.stein@gmail.com',
