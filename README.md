@@ -1,5 +1,7 @@
 # Pythief DJ
 
+[![PyPI version](https://badge.fury.io/py/pythief-dj.svg)](https://badge.fury.io/py/pythief-dj)
+
 A semi-simple tool for... "borrowing"... audio from YouTube videos.
 
 ## Here's why I do this
