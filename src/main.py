@@ -26,13 +26,13 @@ def cli(**kwargs):
     """Download audio for the videos specified in VIDEOS, in --txt, or both."""
     if len(sys.argv) < 2:
         _echo_command_help(cli)
-        exit()
+        sys.exit()
 
     args = PyThiefArgs.from_kwargs(kwargs)
     if not args.is_valid:
         click.echo('Invalid args. Want some help?')
         _echo_command_help(cli)
-        exit(1)
+        sys.exit(1)
 
     # services
     # auth_service = AuthService()
