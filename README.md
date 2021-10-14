@@ -19,28 +19,32 @@ However, I also found YouTube ripping a very tedious process. You search, find y
 
 ## Note
 
-Pythief DJ automatically tries to download the highest-quality audio stream available, but most videos encode audio at a maximumn of 128kbps. This is obviously far short of the 320kbps minimum that we shoot for as DJs, but it's sufficient for trying a song out at home. Want better quality? **Buy the song** on a service like iTunes, Amazon Music, Beatport, etc.
+Pythief DJ automatically tries to download the highest-quality audio stream available, but most videos encode audio at a maximum of 128kbps. This is obviously far short of the 320kbps minimum that we shoot for as DJs, but it's sufficient for trying a song out at home. Want better quality? **Buy the song** on a service like iTunes, Amazon Music, Beatport, etc.
 
 ## Advanced tricks for turbocharged music borrowing
 
 As a general note, you can type `pythief-dj` without any arguments to see options you can supply to Pythief DJ that change its behavior. It looks like this right now:
 
 ```
-Usage:  [OPTIONS] [VIDEOS]...
+Usage: pythief-dj [OPTIONS] [VIDEOS]...
 
-  Download audio for the videos specified in VIDEOS, in --txt, or both.
+Download audio for the videos specified in VIDEOS, in --txt, or both.
 
 Options:
-  -t, --txt PATH           Path to a text file containing the videos to
-                           download. One per line.
-  -o, --out-dir DIRECTORY  The directory into which you want to save the files
-                           downloaded
-  -f, --format TEXT        The format into which you wish to convert the audio
-                           data from the video (mp3 by default).
-  -k, --keep-raw BOOLEAN   Keep the raw MP4 files downloaded from YouTube that
-                           this tool converts to MP3 for use (false by
-                           default).
-  --help                   Show this message and exit.
+  -d, --dry-run / --do-it-live  If enabled, dry run treats your input as
+                                search terms rather than specific videos and
+                                opens a browser tab for each term on YouTube.
+                                It doesn't download anything.
+  -k, --keep-raw BOOLEAN        Keep the raw MP4 files downloaded from YouTube
+                                that this tool converts to MP3 for use (false
+                                by default).
+  -f, --format TEXT             The format into which you wish to convert the
+                                audio data from the video (mp3 by default).
+  -o, --out-dir DIRECTORY       The directory into which you want to save the
+                                files downloaded
+  -t, --txt PATH                Path to a text file containing the videos to
+                                download. One per line.
+  --help                        Show this message and exit.
 ```
 
 Also...
@@ -60,8 +64,9 @@ Also...
 
 ## Things I'll add eventually
 
-I'm a grad student, so my disposable time is not great, but you never know when I'll want to avoid work. Look for these to come eventually, and if you have ideas, [open an issue](https://github.com/jammerware/pythief-dj/issues/new).
+I'm a grad student, so my disposable time is not in high quantities. On the other hand, you never know when I'll want to avoid work. Look for these to come eventually, and if you have ideas, [open an issue](https://github.com/jammerware/pythief-dj/issues/new).
 
+- **Configurable verbosity:** Right now, it just kind of burbles at random times as it does its thing, but I'll eventually add levels of verbosity you can ask for as you run the command.
 - **Entry of videos by CSV:** The use case I'm thinking of here is that you might want to pre-specify the artist/title in advance, along additional ID3 tags like genre. 
 - **Magical automatic YouTube search**: I'm currently tussling with YouTube's OAuth API, but when I'm done, I can at least try to find a song's video if you don't have the URL.
 

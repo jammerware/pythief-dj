@@ -12,4 +12,8 @@ dist
 venv
 
 # output
+pythief-dj-output
 output
+
+# in progress
+.github

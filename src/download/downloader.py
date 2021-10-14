@@ -1,32 +1,30 @@
 import os
-import pathlib
 from context.py_thief_context import PyThiefContext
 from pytube import YouTube
-from services.logger import Logger
 from download.downloaded_song import DownloadedSong
 
 
 class Downloader:
-    def __init__(self, logger: Logger):
-        self.logger = logger
+    def __init__(self, context: PyThiefContext):
+        self._context = context
 
-    def download(self, urls: list[str], context: PyThiefContext):
+    def download(self, urls: list[str]):
         downloaded: list[DownloadedSong] = []
 
         for url in urls:
-            self.logger.log(f'Starting on video at {url}...')
+            self._context.talkback.say(f'Starting on video at {url}...')
             yt = YouTube(url)
 
-            self.logger.log(f'Found video "{yt.title}". Getting MP4 stream...')
+            self._context.talkback.say(f'Found video "{yt.title}". Getting MP4 stream...')
             all_streams = yt.streams.filter(mime_type='audio/mp4')
             stream = self._find_highest_bitrate(all_streams)
-            self.logger.log(
+            self._context.talkback.say(
                 f'Found stream. Bitrate is {stream.abr}, size is about {round(stream.filesize_approx / (10 ** 5), 2)}MB')
             file_name = stream.default_filename
 
-            stream.download(context.storage.raw_root)
-            path = os.path.join(context.storage.raw_root, file_name)
-            self.logger.log(f'Downloaded to {path}.')
+            stream.download(self._context.storage.raw_root)
+            path = os.path.join(self._context.storage.raw_root, file_name)
+            self._context.talkback.say(f'Downloaded to {path}.')
 
             downloaded.append(DownloadedSong(yt.title, url, path))
 

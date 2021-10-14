@@ -9,6 +9,7 @@ class PyThiefArgs:
         args._videos = [] if 'video' not in args_dict else list(args_dict['video'])
 
         # i'm setting defaults for these with click, so I'm assuming it's there for now
+        args._dry_run = args_dict['dry_run']
         args._format = args_dict['format'].lower()
         args._keep_raw = args_dict['keep_raw']
         args._out_dir = args_dict['out_dir']
@@ -17,6 +18,9 @@ class PyThiefArgs:
         args._videos += list(args_dict['videos'])
 
         return args
+
+    @property
+    def dry_run(self) -> bool: return self._dry_run
 
     @property
     def format(self) -> str: return self._format
