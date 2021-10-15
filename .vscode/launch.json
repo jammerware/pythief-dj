@@ -1,0 +1,60 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "click",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}${pathSeparator}src${pathSeparator}main.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "click (help)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}${pathSeparator}src${pathSeparator}main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--help"
+            ]
+        },
+        {
+            "name": "click (video)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}${pathSeparator}src${pathSeparator}main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "--video",
+                "https://www.youtube.com/watch?v=F7cihvwCXes"
+            ]
+        },
+        {
+            "name": "click (videos arg + option)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}${pathSeparator}src${pathSeparator}main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "https://www.youtube.com/watch?v=F7cihvwCXes",
+                "https://www.youtube.com/watch?v=PM1UY-rEhwo",
+                "--video",
+                "https://www.youtube.com/watch?v=707f2Xku0mE"
+            ]
+        },
+        {
+            "name": "click (dry run)",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}${pathSeparator}src${pathSeparator}main.py",
+            "console": "integratedTerminal",
+            "args": [
+                "dj liftoff",
+                "--dry-run"
+            ]
+        }
+    ]
+}

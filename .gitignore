@@ -1,6 +1,5 @@
 # config
 .secret
-.vscode
 
 # build
 __pycache__
