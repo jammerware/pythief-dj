@@ -9,7 +9,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name='pythief-dj',
-    version='0.3.1',
+    version='0.3.2',
     description='A CLI for "borrowing" music from YouTube. DJ use only, and also, you know the deal, DJs, right?',
     author='Ben Stein',
     author_email='ben.s.stein@gmail.com',
@@ -22,8 +22,8 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.9",
     ],
+    package_dir={'': 'src'},
     packages=find_packages(where='src'),
-    py_modules=['main', 'commands', 'context', 'download', 'services'],
     install_requires=[
         'Click',
         'flask',
