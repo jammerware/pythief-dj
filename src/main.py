@@ -5,7 +5,7 @@ from commands.cli import cli
 
 
 # load env
-load_dotenv(os.path.join(os.getcwd(), './.secret/.env'))
+load_dotenv(os.path.join(os.getcwd(), '.secret/.env'))
 
 
 if __name__ == '__main__':
