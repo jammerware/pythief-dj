@@ -28,7 +28,6 @@
             "program": "${workspaceFolder}${pathSeparator}src${pathSeparator}main.py",
             "console": "integratedTerminal",
             "args": [
-                "--video",
                 "https://www.youtube.com/watch?v=F7cihvwCXes"
             ]
         },
